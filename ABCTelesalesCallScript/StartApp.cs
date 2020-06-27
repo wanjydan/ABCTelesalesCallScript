@@ -319,14 +319,15 @@ namespace ABCTelesalesCallScript
         private void CallBack(DateTime dateTime)
         {
             EndCall();
+            Call();
         }
 
-        private void NotInterested()
+        private static void NotInterested()
         {
             EndCall();
         }
 
-        private void EndCall()
+        private static void EndCall()
         {
             AskQuestion(14);
         }
