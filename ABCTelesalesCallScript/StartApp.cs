@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace ABCTelesalesCallScript
@@ -308,17 +309,41 @@ namespace ABCTelesalesCallScript
 
         private static void SendEmail(string address)
         {
-            var text = "Hi, there is an Escalation, Kindly look in to it asap";
+            // var text = "Hi, there is an Escalation, Kindly look in to it asap";
         }
 
-        private static void SendSms(string phone)
+        private static void SendSms(string phoneNumber)
         {
-            var text = "Hello Test Escalation";
+            const string username = "wanj";
+            const string key = "20d64532cb1ec70864141b9f64f02dc9fa1b1a4701edd856b3af791ef4cdb003";
+            const string url = "https://api.africastalking.com/version1/messaging";
+
+            const string message = "Hello Test Escalation";
+
+            var formDictionary = new Dictionary<string, string>
+            {
+                {"username", username}, {"to", phoneNumber}, {"message", message}
+            };
+
+            var formContent = new FormUrlEncodedContent(formDictionary);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
+
+            request.Headers.Add("apiKey", key);
+            request.Headers.Add("Accept", "application/json");
+
+            request.Content = formContent;
+
+            using var client = new HttpClient();
+
+            var response = client.SendAsync(request);
         }
 
         private void CallBack(DateTime dateTime)
         {
             EndCall();
+            Console.WriteLine(
+                "\n\n\n<<===================================== NEW CALL =====================================>>\n\n\n");
             Call();
         }
 

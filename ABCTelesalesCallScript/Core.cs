@@ -28,7 +28,7 @@ namespace ABCTelesalesCallScript
                 QuestionType.YesNo),
             ("Is this call an escalation?", QuestionType.YesNo),
             ("Well Charles Mwasambu, thank you for your time, it's been a pleasure talking to you.\n If you have any further clarifications , feel free to contact our website www.abc.co or phone number 020 – 5230028.\n\nHave a good day. Good bye. ",
-                QuestionType.YesNo),
+                QuestionType.Void),
             ("Shall we Continue?", QuestionType.YesNo),
             ("ABC is a backup service provider that offers you affordable & secure backup solutions. It also offers leased server services so customers don’t have to invest in physical servers in their offices which are managed by ABC, 24/ 7 ",
                 QuestionType.Void)
